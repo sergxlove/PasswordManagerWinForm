@@ -32,7 +32,6 @@
             label2 = new Label();
             textBox1 = new TextBox();
             label1 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             textBox2 = new TextBox();
             label3 = new Label();
             textBox3 = new TextBox();
@@ -50,6 +49,7 @@
             label5 = new Label();
             button2 = new Button();
             button1 = new Button();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -98,14 +98,6 @@
             label1.Size = new Size(152, 31);
             label1.TabIndex = 0;
             label1.Text = "Все карточки";
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.BorderStyle = BorderStyle.Fixed3D;
-            flowLayoutPanel1.Location = new Point(12, 70);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(435, 583);
-            flowLayoutPanel1.TabIndex = 0;
             // 
             // textBox2
             // 
@@ -322,6 +314,15 @@
             button1.TabIndex = 14;
             button1.Text = "Сохранить";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // panel2
+            // 
+            panel2.AutoScroll = true;
+            panel2.Location = new Point(12, 70);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(435, 583);
+            panel2.TabIndex = 3;
             // 
             // Form1
             // 
@@ -329,11 +330,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(69, 69, 69);
             ClientSize = new Size(1236, 665);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(panel2);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Password manager";
+            Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
@@ -346,7 +348,6 @@
         private Panel panel1;
         private Label label1;
         private TextBox textBox1;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Label label2;
         private TextBox textBox2;
         private Label label3;
@@ -365,5 +366,6 @@
         private Label label8;
         private Label label7;
         private Label label6;
+        private Panel panel2;
     }
 }
