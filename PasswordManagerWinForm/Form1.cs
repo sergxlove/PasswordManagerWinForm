@@ -1,4 +1,6 @@
 using PasswordManagerWinForm.Contracts;
+using PasswordManager.Core;
+using PasswordManager.Application;
 
 namespace PasswordManagerWinForm
 {
@@ -10,6 +12,7 @@ namespace PasswordManagerWinForm
         }
 
         private DefaultTextForTextBox defText = new DefaultTextForTextBox();
+        private List<Panel> allPanels = new List<Panel>();
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
@@ -188,6 +191,64 @@ namespace PasswordManagerWinForm
                 "*Необязательное поле"
                 );
             TextBoxValidation(prop);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CardsApp longCard = new CardsApp();
+            ShortCardAppAplication card = new ShortCardAppAplication();
+            
+        } 
+
+        private void DrawCards(List<ShortCardApp> cards)
+        {
+            ShortCardAppAplication getCard = new ShortCardAppAplication();
+            for (int i = 0; i < cards.Count; i++)
+            {
+                Panel panelCard = new Panel { Width = 415, Height = 100, BackColor = Color.Gray, Top = i * 105, Left = 20, Tag = i };
+                Label firstLabel = new Label { Text = getCard.Read(i).NameService, AutoSize = true, Location = new Point(10, 10), Tag = i };
+                Label secondLabel = new Label { Text = getCard.Read(i).DateUpdate.ToString(), AutoSize = true, Location = new Point(10, 50), Tag = i };
+                firstLabel.Click += LabelInPanelCardClick;
+                secondLabel.Click += LabelInPanelCardClick;
+                panelCard.Click += PanelCardClick;
+                panelCard.Controls.Add(firstLabel);
+                panelCard.Controls.Add(secondLabel);
+                panel2.Controls.Add(panelCard);
+                allPanels.Add(panelCard);
+            }
+        }
+
+        private void DeleteAllPanels(List<Panel> allPanels)
+        {
+            while (allPanels?.Count != 0)
+            {
+                Panel? selectPanel = allPanels?.FirstOrDefault();
+                var LabelPanelList = selectPanel?.Controls.OfType<Label>().ToList();
+                while (LabelPanelList?.Count != 0)
+                {
+                    Label? selectLabel = LabelPanelList?.FirstOrDefault();
+                    LabelPanelList?.Remove(selectLabel!);
+                    selectLabel?.Dispose();
+                }
+                allPanels?.Remove(selectPanel!);
+                selectPanel?.Dispose();
+            }
+        }
+
+
+        private void PanelCardClick(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelInPanelCardClick(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
