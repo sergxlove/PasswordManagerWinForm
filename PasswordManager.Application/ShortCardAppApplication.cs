@@ -1,9 +1,9 @@
 ﻿using PasswordManager.Core;
 namespace PasswordManager.Application
 {
-    public class ShortCardAppAplication
+    public class ShortCardAppApplication
     {
-        public ShortCardAppAplication()
+        public ShortCardAppApplication()
         {
             ListShortCardApp cards = new ListShortCardApp();
             this.allCards = cards.ShortCards;
@@ -38,7 +38,7 @@ namespace PasswordManager.Application
             }
         }
 
-        private List<ShortCardApp> allCards;
+        public readonly List<ShortCardApp> allCards;
 
     }
 }

@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace PasswordManager.Application
 {
-    public class CardAppAplication
+    public class CardAppApplication
     {
-        public CardAppAplication()
+        public CardAppApplication()
         {
             ListCardApp cards = new ListCardApp();
             allCards = cards.Cards;
