@@ -13,6 +13,9 @@ namespace PasswordManagerWinForm
 
         private DefaultTextForTextBox defText = new DefaultTextForTextBox();
         private List<Panel> allPanels = new List<Panel>();
+        private int CountId = 0;
+        private ShortCardAppApplication shortCards = new ShortCardAppApplication();
+        private CardAppApplication longCards = new CardAppApplication();
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
@@ -195,19 +198,58 @@ namespace PasswordManagerWinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CardsApp longCard = new CardsApp();
-            ShortCardAppAplication card = new ShortCardAppAplication();
+            CardsApp longCard = new CardsApp
+            {
+                Id = CountId,
+                Name = textBox2.Text,
+                Login = textBox3.Text,
+                Password = textBox4.Text,
+                Url = textBox5.Text,
+                Description = textBox6.Text,
+                DateCreated = DateTime.Now
+            };
+            ShortCardApp shortCard = new ShortCardApp
+            {
+                Id = CountId,
+                NameService = textBox2.Text,
+                DateUpdate = DateTime.Now
+            };
+            CountId++;
+            longCards.Create(longCard);
+            shortCards.Create(shortCard);
+            DeleteAllPanels(allPanels);
+            DrawCards(shortCards.allCards);
             
         } 
 
         private void DrawCards(List<ShortCardApp> cards)
         {
-            ShortCardAppAplication getCard = new ShortCardAppAplication();
             for (int i = 0; i < cards.Count; i++)
             {
-                Panel panelCard = new Panel { Width = 415, Height = 100, BackColor = Color.Gray, Top = i * 105, Left = 20, Tag = i };
-                Label firstLabel = new Label { Text = getCard.Read(i).NameService, AutoSize = true, Location = new Point(10, 10), Tag = i };
-                Label secondLabel = new Label { Text = getCard.Read(i).DateUpdate.ToString(), AutoSize = true, Location = new Point(10, 50), Tag = i };
+                Panel panelCard = new Panel
+                {
+                    Width = 405, Height = 100,
+                    BackColor = Color.FromArgb(69, 69, 69),
+                    Top = i * 105, Left = 5,
+                    Tag = i,
+                    BorderStyle = BorderStyle.Fixed3D
+                };
+                Label firstLabel = new Label
+                { 
+                    Text = $"{shortCards.Read(i).NameService}", 
+                    AutoSize = true, 
+                    Location = new Point(10, 10), 
+                    Tag = i, 
+                    ForeColor = Color.White
+                };
+                Label secondLabel = new Label 
+                { 
+                    Text = $"Создан : {shortCards.Read(i).DateUpdate.ToString()}", 
+                    AutoSize = true, 
+                    Location = new Point(10, 50), 
+                    Tag = i,
+                    ForeColor = Color.White
+                };
                 firstLabel.Click += LabelInPanelCardClick;
                 secondLabel.Click += LabelInPanelCardClick;
                 panelCard.Click += PanelCardClick;

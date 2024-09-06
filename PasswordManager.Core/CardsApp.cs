@@ -19,6 +19,6 @@
 
     public class ListCardApp
     {
-        public List<CardsApp> Cards { get; set; } = null!;
+        public List<CardsApp> Cards { get; set; } = new List<CardsApp>();
     }
 }

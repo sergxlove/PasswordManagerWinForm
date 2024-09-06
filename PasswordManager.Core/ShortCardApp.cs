@@ -11,7 +11,7 @@
 
     public class ListShortCardApp
     {
-        public List<ShortCardApp> ShortCards { get; set; } = null!;
+        public List<ShortCardApp> ShortCards { get; set; } = new List<ShortCardApp>();
     }
 
 }
